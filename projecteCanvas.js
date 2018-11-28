@@ -30,8 +30,8 @@ var colorsLletra = new Array(
 
 var gruixosLletra = new Array(
     1.5,
-    1.7,
-    2.0,
+    2,
+    2.5,
 );
 
 var figuraSeleccionada = null;
@@ -39,34 +39,31 @@ var colorSeleccionado = null;
 var colorLletraSeleccionat = null;
 var gruiLletraSeleccionat = null;
 
-var ample = null;
-var alt = null;
+var ample= null;
+var alt= null;
 var esquerra = null;
 var superior = null;
 var margEsquerra = null;
 
 
-var ample = null;
-var alt = null;
+var ample= null;
+var alt= null;
 var esquerra = null;
 var gruix = null;
 var color = null;
-var tipuslin = null;
-var tipuslin2 = null;
+var tipuslin =null;
+var tipuslin2 =null;
 
 
+/* function up(){
 
-
+    console.log("up");
+    document.getElementById("video").volume -=0.1;
+} */
 
 /**Funció que es carrega quan s'ha carregat l'html */
 $(function () {
 
-    /***VIDEO */
-
-    /* $("#up").on("click", function () {
-        alert("f");
-        $("#video").volume+=0.1;
-    }); */
 
     /**Ocultem elements inicials */
     $(".gruix").hide();
@@ -77,12 +74,20 @@ $(function () {
     $(".lul2").hide();
     $("canvas").hide();
 
-
+    var video = document.getElementById("video");
 
     $("#up").on("click", function () {
-        $("#video").volume = 1.0;
+        console.log("Up [MAX 1]: "+ video.volume);
+        video.volume+=0.1;
     });
 
+    $("#down").on("click", function () {
+        console.log("down [MIN 0]: "+video.volume);
+        
+        video.volume-=0.1;
+    });
+
+    
 
 
     /**Mostrem la pàgina de les figures */
@@ -91,8 +96,11 @@ $(function () {
         $(".pepatext").show();
         $(".pepa").show();
         $("video").hide();
+        $("#up").hide();
+        $("#down").hide();
+        $("#buttons").hide();
         $("canvas").show();
-
+        
 
         /* draw(); */
     });
@@ -113,11 +121,14 @@ $(function () {
      */
     $("canvas").on("click", function () {
 
+        
+
         figuraSeleccionada = $(this).attr("id");
+       /*  $("#"+figuraSeleccionada).click(false); */
 
         ample = $(this).css("width");
-        esquerra = $(this).css("left");
-        superior = $(this).css("top");
+        esquerra =$(this).css("left");
+        superior =$(this).css("top");
         margEsquerra = $(this).css("margin-left");
         /* alert(ample); */
 
@@ -132,8 +143,8 @@ $(function () {
         $(".lul").show();
         $(".lul2").show();
         $("#back").show();
+
         $("p").show();
-    
 
         pintaInfo();
 
@@ -151,36 +162,38 @@ $(function () {
 
         /**Animació per mostrar la figura geomètrica clicada */
         $(this).animate({
-            width: "1100",
-            left: "650",
-            top: "30",
-            marginLeft: "0%",
-
+            width: "500",
+            left: "850",
+            top: "150",
+            marginLeft:"0%",
+           
 
         },
+        
 
+        
 
-
-
-            "slow",
+        "slow",
 
 
         )
 
-        /*  alert($(this).css("left")); */
+       /*  alert($(this).css("left")); */
     });
-
+    
 
     /**Accions que es duen a terme quan es clica el botó de tornar enrere */
     $("#back").on("click", function () {
+        
+
         $("#" + figuraSeleccionada).animate({
             width: ample,
             left: esquerra,
             top: superior,
             marginLeft: margEsquerra,
-
+           
         });
-
+        
 
 
         $(".pepatext").show();
@@ -191,7 +204,6 @@ $(function () {
         $(".lul2").hide();
         $("p").hide();
         $("#back").hide();
-        
 
         pintaNormal();
 
@@ -208,8 +220,25 @@ $(function () {
     });
 
 
-});
 
+    /**Funció clicar botó de color */
+    /* $("p").on("click", function () {
+        colorSeleccionado = $(this).attr("id");
+        console.log("Color: " + colorSeleccionado);
+
+
+        figuras.forEach(element => {
+            if (figuraSeleccionada == element) {
+
+                pintaForma();
+
+            }
+
+        });
+
+    }); */
+
+});
 
 
 
@@ -222,52 +251,52 @@ function draw1() {
 
         var CANcuadrado = document.getElementById("cuadrado");
         var context1 = CANcuadrado.getContext("2d");
-        square(context1, "white", 4, 0, 0);
+        square(context1,"white",4,0,0);
 
 
         var CANtriangulo = document.getElementById("triangulo");
         var context2 = CANtriangulo.getContext("2d");
-        triangle(context2, "white", 4, 0, 0);
+        triangle(context2,"white",4,0,0);
 
 
         var CANpentagono = document.getElementById("pentagono");
         var context3 = CANpentagono.getContext("2d");
-        penta(context3, "white", 4, 0, 0);
+        penta(context3,"white",4,0,0);
 
 
         var CANcilindro = document.getElementById("cilindro");
         var context4 = CANcilindro.getContext("2d");
-        cilindro(context4, "white", 4, 0, 0);
+        cilindro(context4,"white",4,0,0);
 
 
         var CANcirculo = document.getElementById("circulo");
         var context5 = CANcirculo.getContext("2d");
-        esphere(context5, "white", 4, 0, 0);
+        esphere(context5,"white",4,0,0);
 
 
         var cRectangle = document.getElementById("cRectangle");
         var context = cRectangle.getContext("2d");
-        dibuixaRectangle(context, "white", 4, 0, 0);
+        dibuixaRectangle(context,"white",4,0,0);
 
 
         var cArc = document.getElementById("cArc");
         var context1 = cArc.getContext("2d");
-        dibuixaArc(context1, "white", 4, 0, 0);
+        dibuixaArc(context1,"white",4,0,0);
 
 
         var cElipse = document.getElementById("cElipse");
         var context2 = cElipse.getContext("2d");
-        dibuixaElipse(context2, "white", 4, 0, 0);
+        dibuixaElipse(context2,"white",4,0,0);
 
 
         var cPiramide3D = document.getElementById("cPiramide3D");
         var context3 = cPiramide3D.getContext("2d");
-        piramide3D(context3, "white", 4, 0, 0)
+        piramide3D(context3,"white",4,0,0)
 
 
         var cCub = document.getElementById("cCub");
         var context4 = cCub.getContext("2d");
-        dibuixaCub(context4, "white", 4, 0, 0);
+        dibuixaCub(context4,"white",4,0,0);
 
 
 
@@ -277,299 +306,166 @@ function draw1() {
     }
 
 }
-function gruixo(id1) {
-    var color = null;
+function gruixo(id1){
+var color = null;
 
 
-    if (id1 == '1') {
-        gruix = 2;
+    if(id1=='1'){
+        gruix=2;
     }
-    if (id1 == '2') {
-        gruix = 5;
+    if(id1=='2'){
+        gruix=5;
     }
-    if (id1 == '3') {
-        gruix = 10;
+    if(id1=='3'){
+        gruix=10;
     }
-    switch (figuraSeleccionada) {
-        case "cRectangle":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-
-            dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-
-        case "triangulo":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            triangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "pentagono":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            pentaInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cilindro":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            cilindroInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "circulo":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            esphereInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cRectangle":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cArc":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaArcInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cElipse":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cPiramide3D":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            piramide3DInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cCub":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaCubInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cuadrado":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            cuadratInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-    }
-
+    pintaMenu();
 
 }
 
-function colorpicker(id) {
-    var color = null;
+function colorpicker(id){
+//var color = null;
 
 
-
-    if (id == 0) {
-        color = "blue";
+    
+    if(id==0){
+        color="blue";
     }
-    if (id == 1) {
-        color = "yellow";
+    if(id==1){
+        color="yellow";
     }
-    if (id == 2) {
-        color = "purple";
+    if(id==2){
+        color="purple";
     }
-    if (id == 3) {
-        color = "red";
+    if(id==3){
+        color="red";
     }
     console.log(color);
 
-    switch (figuraSeleccionada) {
-        case "cRectangle":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
+    pintaMenu();
 
-            dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
+}
+  
+function tipuslinea(idT){
+var color = null;
 
 
-        case "triangulo":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            triangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "pentagono":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            pentaInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cilindro":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            cilindroInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "circulo":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            esphereInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cRectangle":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cArc":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaArcInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cElipse":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cPiramide3D":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            piramide3DInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cCub":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaCubInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cuadrado":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            cuadratInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
+    if(idT==0){
+        tipuslin="0";
+        tipuslin2="0";
     }
+    if(idT==1){
+        tipuslin="1";
+        tipuslin2="5";
+
+    }
+    if(idT==2){
+        tipuslin="12";
+        tipuslin2="4";
+
+    }
+
+    pintaMenu();
+
+   
+ 
+    
 }
 
-function tipuslinea(idT) {
-    var color = null;
-
-
-    if (idT == 0) {
-        tipuslin = "0";
-        tipuslin2 = "0";
-    }
-    if (idT == 1) {
-        tipuslin = "1";
-        tipuslin2 = "5";
-
-    }
-    if (idT == 2) {
-        tipuslin = "12";
-        tipuslin2 = "4";
-
-    }
-
-    console.log(tipuslin);
-    console.log(figuraSeleccionada);
-
-
-    switch (figuraSeleccionada) {
-        case "cRectangle":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-
-            dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-
-        case "triangulo":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            triangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "pentagono":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            pentaInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cilindro":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            cilindroInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "circulo":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            esphereInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cRectangle":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cArc":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaArcInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cElipse":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cPiramide3D":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            piramide3DInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cCub":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            dibuixaCubInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-
-        case "cuadrado":
-            var sample = document.getElementById(figuraSeleccionada);
-            var context = sample.getContext("2d");
-            cuadratInfo(context, color, gruix, tipuslin, tipuslin2);
-            break;
-    }
-}
-
-function colorLletra(valor) {
-
+function colorLletra(valor){
+    
     colorLletraSeleccionat = colorsLletra[valor];
-    console.log("gruix: " + gruix);
 
-    console.log("Color lletra seleccionat " + colorLletraSeleccionat);
+    console.log("Color lletra seleccionat "+colorLletraSeleccionat);
 
-    pintaFigura();
-
+    pintaMenu();
+    
 }
 
-function gruixLletra(valor) {
+function gruixLletra(valor){
     gruiLletraSeleccionat = gruixosLletra[valor];
-    console.log("Gruixos lletra seleccionat " + gruiLletraSeleccionat);
+    console.log("Gruixos lletra seleccionat "+gruiLletraSeleccionat);
 
-    pintaFigura();
+    pintaMenu();
 }
-function pintaFigura() {
 
+function pintaMenu(){
+    switch (figuraSeleccionada) {
+        case "cRectangle":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+
+            dibuixaRectangleInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+
+        case "triangulo":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            triangleInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "pentagono":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            pentaInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cilindro":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            cilindroInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "circulo":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            esphereInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cRectangle":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            dibuixaRectangleInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cArc":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            dibuixaArcInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cElipse":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            dibuixaElipseInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cPiramide3D":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            piramide3DInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cCub":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+            dibuixaCubInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+
+        case "cuadrado":
+        var sample = document.getElementById(figuraSeleccionada);
+        var context = sample.getContext("2d");
+        cuadratInfo(context,color,gruix,tipuslin,tipuslin2);
+            break;
+    }
+}
+
+function pintaFigura() {
+    
     var context = obtenirContext();
 
-    cuadratInfo(context);
-
+    
     switch (figuraSeleccionada) {
         case "cRectangle":
             dibuixaRectangleInfo(context);
@@ -621,7 +517,7 @@ function pintaFigura() {
 
 }
 
-function obtenirContext() {
+function obtenirContext(){
     var element = document.getElementById(figuraSeleccionada);
     var context = element.getContext("2d");
     return context;
@@ -631,54 +527,55 @@ function pintaNormal() {
 
     var element = document.getElementById(figuraSeleccionada);
     var context = element.getContext("2d");
-    tipuslin = 0;
-    tipuslin2 = 0;
+   tipuslin=0;
+   tipuslin2=0;
+
 
     switch (figuraSeleccionada) {
         case "cRectangle":
 
-            dibuixaRectangle(context, color, gruix, tipuslin, tipuslin2);
+            dibuixaRectangle(context,color,gruix,tipuslin,tipuslin2);
             break;
 
 
         case "triangulo":
-            triangle(context, color, gruix, tipuslin, tipuslin2);
+            triangle(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "pentagono":
-            penta(context, color, gruix, tipuslin, tipuslin2);
+            penta(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cilindro":
-            cilindro(context, color, gruix, tipuslin, tipuslin2);
+            cilindro(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "circulo":
-            esphere(context, color, gruix, tipuslin, tipuslin2);
+            esphere(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cRectangle":
-            dibuixaRectangle(context, color, gruix, tipuslin, tipuslin2);
+            dibuixaRectangle(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cArc":
-            dibuixaArc(context, color, gruix, tipuslin, tipuslin2);
+            dibuixaArc(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cElipse":
-            dibuixaElipse(context, color, gruix, tipuslin, tipuslin2);
+            dibuixaElipse(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cPiramide3D":
-            piramide3D(context, color, gruix, tipuslin, tipuslin2);
+            piramide3D(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cCub":
-            dibuixaCub(context, color, gruix, tipuslin, tipuslin2);
+            dibuixaCub(context,color,gruix,tipuslin,tipuslin2);
             break;
 
         case "cuadrado":
-            square(context, color, gruix, tipuslin, tipuslin2);
+            square(context,color,gruix,tipuslin,tipuslin2);
             break;
     }
 }
@@ -691,11 +588,11 @@ function pintaInfo() {
     var element = document.getElementById(figuraSeleccionada);
     var context = element.getContext("2d");
 
-    var tipuslin = 0;
-    var tipuslin2 = 0;
+        var tipuslin=0;
+        var tipuslin2=0;
 
 
-
+   
     switch (figuraSeleccionada) {
         case "cRectangle":
             dibuixaRectangleInfo(context);
@@ -710,7 +607,7 @@ function pintaInfo() {
             break;
 
         case "cilindro":
-            cilindroInfo(context, "white", 4, 0, 0);
+            cilindroInfo(context,"white",4,0,0);
             break;
 
         case "circulo":
@@ -750,15 +647,15 @@ function pintaInfo() {
 
 
 
-function square(context1, color, gruix, tipuslin, tipuslin2) {
-    console.log("squre gruix: " + gruix);
+
+function square(context1,color,gruix,tipuslin,tipuslin2) {
     context1.beginPath();
 
 
     context1.lineWidth = gruix;
     context1.globalAlpha = 0.8;
     context1.strokeStyle = color;
-    context1.setLineDash([tipuslin, tipuslin2]);
+    context1.setLineDash([tipuslin,tipuslin2]);
     context1.rect(60, 60, 140, 140);
     context1.clearRect(0, 0, 300, 300);
 
@@ -767,11 +664,11 @@ function square(context1, color, gruix, tipuslin, tipuslin2) {
 
 }
 
-function cuadratInfo(context1, color, gruix, tipuslin, tipuslin2) {
-    square(context1, color, gruix, tipuslin, tipuslin2);
+function cuadratInfo(context1,color,gruix,tipuslin,tipuslin2) {
+    square(context1,color,gruix,tipuslin,tipuslin2);
 
     context1.beginPath();
-    context1.setLineDash([tipuslin, tipuslin2]);
+    context1.setLineDash([tipuslin,tipuslin2]);
 
     context1.lineWidth = "1.5";
     context1.strokeStyle = color;
@@ -789,14 +686,14 @@ function cuadratInfo(context1, color, gruix, tipuslin, tipuslin2) {
 
     context1.beginPath();
     context1.globalAlpha = 0.8;
-    context1.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context1.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context1.fillStyle = colorLletraSeleccionat;
     context1.fillText("Base", 105, 240);
     context1.stroke();
 
     context1.beginPath();
     context1.globalAlpha = 0.6;
-    context1.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context1.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context1.fillStyle = colorLletraSeleccionat;
     context1.fillText("Altura", 220, 130);
     context1.stroke();
@@ -807,13 +704,13 @@ function cuadratInfo(context1, color, gruix, tipuslin, tipuslin2) {
 }
 
 
-function triangle(context2, color, gruix, tipuslin, tipuslin2) {
+function triangle(context2,color,gruix,tipuslin,tipuslin2) {
 
     context2.beginPath();
     context2.lineWidth = gruix;
     context2.globalAlpha = 0.8;
     context2.clearRect(0, 0, 300, 300);
-    context2.setLineDash([tipuslin, tipuslin2]);
+    context2.setLineDash([tipuslin,tipuslin2]);
     context2.moveTo(125, 60);
     context2.lineTo(50, 200);
     context2.lineTo(200, 200);
@@ -826,8 +723,8 @@ function triangle(context2, color, gruix, tipuslin, tipuslin2) {
 
 }
 
-function triangleInfo(context2, color, gruix, tipuslin, tipuslin2) {
-    triangle(context2, color, gruix, tipuslin, tipuslin2);
+function triangleInfo(context2,color,gruix,tipuslin,tipuslin2) {
+    triangle(context2,color,gruix,tipuslin,tipuslin2);
     context2.beginPath();
     context2.lineWidth = "1.5";
     context2.setLineDash([2, 2]);
@@ -842,7 +739,7 @@ function triangleInfo(context2, color, gruix, tipuslin, tipuslin2) {
 
     context2.beginPath();
     context2.globalAlpha = 0.6;
-    context2.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context2.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context2.fillStyle = colorLletraSeleccionat;
     context2.fillText("Angle", 55, 50);
     context2.stroke();
@@ -857,7 +754,7 @@ function triangleInfo(context2, color, gruix, tipuslin, tipuslin2) {
 
     context2.beginPath();
     context2.globalAlpha = 0.6;
-    context2.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context2.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context2.fillStyle = colorLletraSeleccionat;
     context2.fillText("Base", 105, 240);
     context2.stroke();
@@ -868,14 +765,14 @@ function triangleInfo(context2, color, gruix, tipuslin, tipuslin2) {
 
 }
 
-function penta(context3, color, gruix, tipuslin, tipuslin2) {
+function penta(context3,color,gruix,tipuslin,tipuslin2) {
 
     context3.beginPath();
     context3.lineWidth = gruix;
     context3.strokeStyle = color;
     context3.globalAlpha = 0.8;
     context3.clearRect(0, 0, 300, 300);
-    context3.setLineDash([tipuslin, tipuslin2]);
+    context3.setLineDash([tipuslin,tipuslin2]);
     context3.moveTo(125, 60);
     context3.lineTo(40, 120);
     context3.lineTo(70, 200);
@@ -888,8 +785,8 @@ function penta(context3, color, gruix, tipuslin, tipuslin2) {
 
 }
 
-function pentaInfo(context3, color, gruix, tipuslin, tipuslin2) {
-    penta(context3, color, gruix, tipuslin, tipuslin2);
+function pentaInfo(context3,color,gruix,tipuslin,tipuslin2) {
+    penta(context3,color,gruix,tipuslin,tipuslin2);
     context3.beginPath();
     context3.lineWidth = "1.5"
     context3.setLineDash([2, 2]);
@@ -899,14 +796,14 @@ function pentaInfo(context3, color, gruix, tipuslin, tipuslin2) {
 
     context3.beginPath();
     context3.globalAlpha = 0.6;
-    context3.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context3.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context3.fillStyle = colorLletraSeleccionat;
     context3.fillText("Apotema", 90, 125);
     context3.stroke();
 
 }
 
-function cilindro(context4, color, gruix, tipuslin, tipuslin2) {
+function cilindro(context4,color,gruix,tipuslin,tipuslin2) {
     var radians = (Math.PI / 180) * 50;
     context4.beginPath();
     context4.lineWidth = gruix;
@@ -914,15 +811,15 @@ function cilindro(context4, color, gruix, tipuslin, tipuslin2) {
     context4.strokeStyle = color;
 
     context4.clearRect(0, 0, 300, 300);
-    context4.setLineDash([tipuslin, tipuslin2]);
-
+    context4.setLineDash([tipuslin,tipuslin2]);
+   
 
     context4.ellipse(125, 60, 45, 9, 0, 0, 2 * Math.PI, true);
     context4.stroke();
 
     context4.beginPath();
     context4.lineWidth = gruix;
-    context4.setLineDash([tipuslin, tipuslin2]);
+    context4.setLineDash([tipuslin,tipuslin2]);
     context4.globalAlpha = 0.8;
     context4.moveTo(80, 60);
     context4.lineTo(80, 190);
@@ -930,7 +827,7 @@ function cilindro(context4, color, gruix, tipuslin, tipuslin2) {
 
     context4.beginPath();
     context4.lineWidth = gruix;
-    context4.setLineDash([tipuslin, tipuslin2]);
+    context4.setLineDash([tipuslin,tipuslin2]);
     context4.globalAlpha = 0.8;
     context4.moveTo(170, 60);
     context4.lineTo(170, 190);
@@ -938,7 +835,7 @@ function cilindro(context4, color, gruix, tipuslin, tipuslin2) {
 
     context4.beginPath();
     context4.lineWidth = gruix;
-    context4.setLineDash([tipuslin, tipuslin2]);
+    context4.setLineDash([tipuslin,tipuslin2]);
     context4.globalAlpha = 0.8;
     context4.ellipse(125, 190, 45, 9, 0, 3, 2 * Math.PI, true);
     context4.stroke();
@@ -955,8 +852,9 @@ function cilindro(context4, color, gruix, tipuslin, tipuslin2) {
 
 }
 
-function cilindroInfo(context4, color, gruix, tipuslin) {
-    cilindro(context4, color, gruix, tipuslin);
+function cilindroInfo(context4,color,gruix,tipuslin,tipuslin2) {
+
+    cilindro(context4,color,gruix,tipuslin,tipuslin2);
     context4.beginPath();
     context4.lineWidth = "1.5";
     context4.globalAlpha = 0.8;
@@ -975,30 +873,30 @@ function cilindroInfo(context4, color, gruix, tipuslin) {
 
     context4.beginPath();
     context4.globalAlpha = 0.6;
-    context4.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context4.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context4.fillStyle = colorLletraSeleccionat;
     context4.fillText("Radi", 110, 223);
     context4.stroke();
 
     context4.beginPath();
     context4.globalAlpha = 0.6;
-    context4.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context4.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context4.fillStyle = colorLletraSeleccionat;
     context4.fillText("Altura", 195, 130);
     context4.stroke();
 
 
 }
-function esphere(context5, color, gruix, tipuslin, tipuslin2) {
+function esphere(context5,color,gruix,tipuslin,tipuslin2) {
     context5.beginPath();
     context5.lineWidth = gruix;
     context5.globalAlpha = 0.8;
     context5.strokeStyle = color;
 
     context5.clearRect(0, 0, 300, 300);
-    context5.setLineDash([tipuslin, tipuslin2]);
+    context5.setLineDash([tipuslin,tipuslin2]);
 
-    context5.setLineDash([tipuslin, tipuslin2]);
+    context5.setLineDash([tipuslin,tipuslin2]);
     context5.arc(125, 125, 75, 0, 2 * Math.PI);
     context5.stroke();
 
@@ -1012,16 +910,16 @@ function esphere(context5, color, gruix, tipuslin, tipuslin2) {
     context5.beginPath();
     context5.lineWidth = "1.5";
     context5.globalAlpha = 0.8;
-    context5.setLineDash([2, 2]);
-    context5.ellipse(125, 125, 75, 25, 0, 0, 2 * Math.PI, true);
+/*      context5.setLineDash([2,2]);
+ */    context5.ellipse(125, 125, 75, 25, 0, 0, 2 * Math.PI, true);
     context5.stroke();
 }
 
-function esphereInfo(context5, color, gruix, tipuslin, tipuslin2) {
-    esphere(context5, color, gruix);
+function esphereInfo(context5,color,gruix,tipuslin,tipuslin2) {
+    esphere(context5,color,gruix,tipuslin,tipuslin2);
     context5.beginPath();
     context5.lineWidth = "1.5";
-    context5.setLineDash([tipuslin, tipuslin2]);
+    context5.setLineDash([2,2]);
     context5.moveTo(125, 125);
     context5.lineTo(85, 144);
     context5.stroke();
@@ -1036,20 +934,20 @@ function esphereInfo(context5, color, gruix, tipuslin, tipuslin2) {
 
     context5.beginPath();
     context5.globalAlpha = 0.6;
-    context5.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context5.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context5.fillStyle = colorLletraSeleccionat;
     context5.fillText("Radi", 130, 130);
     context5.stroke();
 
 }
 
-function dibuixaRectangle(context, color, gruix, tipuslin, tipuslin2) {
+function dibuixaRectangle(context,color,gruix,tipuslin,tipuslin2) {
     context.beginPath();
     context.lineWidth = gruix;
     context.globalAlpha = 0.8;
     context.strokeStyle = color;
     context.clearRect(0, 0, 300, 300);
-    context.setLineDash([tipuslin, tipuslin2]);
+    context.setLineDash([tipuslin,tipuslin2]);
     context.rect(20, 50, 200, 100);
 
     context.stroke();
@@ -1059,8 +957,8 @@ function dibuixaRectangle(context, color, gruix, tipuslin, tipuslin2) {
     // escriuTitol(context, "Rectangle");
 }
 
-function dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2) {
-    dibuixaRectangle(context, color, gruix, tipuslin, tipuslin2);
+function dibuixaRectangleInfo(context,color,gruix,tipuslin,tipuslin2) {
+    dibuixaRectangle(context,color,gruix,tipuslin,tipuslin2);
 
 
     context.beginPath();
@@ -1080,21 +978,21 @@ function dibuixaRectangleInfo(context, color, gruix, tipuslin, tipuslin2) {
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Base", 105, 190);
     context.stroke();
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Altura", 240, 105);
     context.stroke();
 
 
 }
-function dibuixaArc(context, color, gruix, tipuslin, tipuslin2) {
+function dibuixaArc(context,color,gruix,tipuslin,tipuslin2) {
     var radians = (Math.PI / 180) * 50;
     context.beginPath();
     context.lineWidth = gruix;
@@ -1102,7 +1000,7 @@ function dibuixaArc(context, color, gruix, tipuslin, tipuslin2) {
     context.strokeStyle = color;
 
     context.clearRect(0, 0, 300, 300);
-    context.setLineDash([tipuslin, tipuslin2]);
+    context.setLineDash([tipuslin,tipuslin2]);
     context.arc(110, 100, 80, 0, 2 * Math.PI);
     context.stroke();
     context.save();
@@ -1120,8 +1018,8 @@ function dibuixaArc(context, color, gruix, tipuslin, tipuslin2) {
 
 }
 
-function dibuixaArcInfo(context, color, gruix, tipuslin, tipuslin2) {
-    dibuixaArc(context, color, gruix, tipuslin, tipuslin2);
+function dibuixaArcInfo(context,color,gruix,tipuslin,tipuslin2) {
+    dibuixaArc(context,color,gruix,tipuslin,tipuslin2);
     context.beginPath();
     context.lineWidth = "1.5";
     context.strokeStyle = color;
@@ -1132,7 +1030,7 @@ function dibuixaArcInfo(context, color, gruix, tipuslin, tipuslin2) {
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Radi", 80, 95);
     context.stroke();
@@ -1141,7 +1039,7 @@ function dibuixaArcInfo(context, color, gruix, tipuslin, tipuslin2) {
 
 
 }
-function dibuixaElipse(context, color, gruix, tipuslin, tipuslin2) {
+function dibuixaElipse(context,color,gruix,tipuslin,tipuslin2) {
     context.beginPath();
     context.lineWidth = gruix;
     context.globalAlpha = 0.8;
@@ -1167,8 +1065,8 @@ function dibuixaElipse(context, color, gruix, tipuslin, tipuslin2) {
 
 
 
-function dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2) {
-    dibuixaElipse(context, color, gruix, tipuslin, tipuslin2);
+function dibuixaElipseInfo(context,color,gruix,tipuslin,tipuslin2) {
+    dibuixaElipse(context,color,gruix,tipuslin,tipuslin2);
     context.beginPath();
     context.lineWidth = "4";
     context.globalAlpha = 0.8;
@@ -1185,7 +1083,7 @@ function dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2) {
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Foco 1", 40, 90);
     context.stroke();
@@ -1193,7 +1091,7 @@ function dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2) {
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Foco 2", 120, 90);
     context.stroke();
@@ -1202,7 +1100,7 @@ function dibuixaElipseInfo(context, color, gruix, tipuslin, tipuslin2) {
 
 
 
-function piramide3D(context, color, gruix, tipuslin, tipuslin2) {
+function piramide3D(context,color,gruix,tipuslin,tipuslin2) {
     context.beginPath();
 
 
@@ -1274,7 +1172,7 @@ function piramide3D(context, color, gruix, tipuslin, tipuslin2) {
 
     //Vertical darrere
     context.beginPath();
-    context.lineWidth = gruix;
+    context.lineWidth =gruix;
     context.globalAlpha = 0.8;
 
     dibuixaLinia(context, a3x, a3y, a4x, a4y);
@@ -1321,8 +1219,8 @@ function piramide3D(context, color, gruix, tipuslin, tipuslin2) {
     //document.getElementById("textPiramide3D").innerHTML= "Piràmide";
 }
 
-function piramide3DInfo(context, color, gruix, tipuslin, tipuslin2) {
-    piramide3D(context, color, gruix, tipuslin, tipuslin2);
+function piramide3DInfo(context,color,gruix,tipuslin,tipuslin2) {
+    piramide3D(context,color,gruix,tipuslin,tipuslin2);
     context.beginPath();
     context.lineWidth = "1.5";
     context.setLineDash([2, 2]);
@@ -1342,14 +1240,14 @@ function piramide3DInfo(context, color, gruix, tipuslin, tipuslin2) {
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Base", 105, 230);
     context.stroke();
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Altura", 185, 100);
     context.stroke();
@@ -1357,58 +1255,58 @@ function piramide3DInfo(context, color, gruix, tipuslin, tipuslin2) {
 }
 
 
-function dibuixaCub(context, color, gruix, tipuslin, tipuslin2) {
+function dibuixaCub(context,color,gruix,tipuslin,tipuslin2) {
 
 
-
+   
 
     context.beginPath();
     context.lineWidth = gruix;
     context.globalAlpha = 0.8;
     context.strokeStyle = color;
-    context.clearRect(0, 0, 300, 300);
+    context.clearRect(0, 0, 300, 300);   
     context.rect(60, 60, 100, 100); //dibuja cuadrado principal
-    context.moveTo(60, 161);//me posiciono en el vertice inferior izquierdo del cuadrado para dibujar la cara del cuadrado izquierda
-    context.lineTo(30, 125);//dibujo la linea de abajo de la cara izquierda
-    context.lineTo(30, 30);//dibujo la linea de la altura de la cara izquierda
-    context.lineTo(62, 62);//dibujo la linea para unir la cara izquiera con el vertice de superior izquierdo del cuadrado
-    context.moveTo(28, 28);//me posiciono en la en el vertice izquierdo del cuadrado de la izquierda
-    context.lineTo(125, 28);//hago la linea superior de todas
-    context.lineTo(161, 60); //uno para cerrar el cuadrado superior
-    context.setLineDash([tipuslin, tipuslin2]);
-    context.stroke();
+    context.moveTo(60,161);//me posiciono en el vertice inferior izquierdo del cuadrado para dibujar la cara del cuadrado izquierda
+    context.lineTo(30,125);//dibujo la linea de abajo de la cara izquierda
+    context.lineTo(30,30);//dibujo la linea de la altura de la cara izquierda
+    context.lineTo(62,62);//dibujo la linea para unir la cara izquiera con el vertice de superior izquierdo del cuadrado
+    context.moveTo(28,28);//me posiciono en la en el vertice izquierdo del cuadrado de la izquierda
+    context.lineTo(125,28);//hago la linea superior de todas
+    context.lineTo(161,60); //uno para cerrar el cuadrado superior
+    context.setLineDash([tipuslin,tipuslin2]);      
+    context.stroke();        
     context.closePath();
 
     context.beginPath();
     context.lineWidth = "1.5";
     context.globalAlpha = 0.8;
     context.strokeStyle = color;
+    
+    context.moveTo(30,125);
+    context.lineTo(125,125);
+    context.lineTo(160,161);
+    context.moveTo(125,125);
+    context.lineTo(125,30);
+    context.setLineDash([2, 2]);   
 
-    context.moveTo(30, 125);
-    context.lineTo(125, 125);
-    context.lineTo(160, 161);
-    context.moveTo(125, 125);
-    context.lineTo(125, 30);
-    context.setLineDash([2, 2]);
-
-    context.stroke();
+    context.stroke();        
     context.closePath();
 
 
 
+    
+    
 
 
 
+//document.getElementById("textCub").innerHTML ="Cub";
 
 
-    //document.getElementById("textCub").innerHTML ="Cub";
-
-
-    //escriuTitol(context, "Cub");
+//escriuTitol(context, "Cub");
 }
 
-function dibuixaCubInfo(context, color, gruix, tipuslin) {
-    dibuixaCub(context, color, gruix, tipuslin);
+function dibuixaCubInfo(context,color,gruix,tipuslin) {
+    dibuixaCub(context,color,gruix,tipuslin);
     context.beginPath();
     context.lineWidth = "1.5";
     context.setLineDash([2, 2]);
@@ -1425,14 +1323,14 @@ function dibuixaCubInfo(context, color, gruix, tipuslin) {
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Base", 120, 230);
     context.stroke();
 
     context.beginPath();
     context.globalAlpha = 0.6;
-    context.font = gruiLletraSeleccionat + "vw Mr-Chalk";
+    context.font = gruiLletraSeleccionat+"vw Mr-Chalk";
     context.fillStyle = colorLletraSeleccionat;
     context.fillText("Altura", 220, 130);
     context.stroke();

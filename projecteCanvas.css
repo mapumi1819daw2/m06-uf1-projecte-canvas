@@ -67,6 +67,18 @@ video{
     left: 45%;
 }
 
+#up{
+    position: absolute;
+    top: 50%;
+    left: 85%;
+}
+
+#down{
+    position: absolute;
+    top: 60%;
+    left: 85%;
+}
+
 
 #back{
     position: absolute;
@@ -98,6 +110,10 @@ video{
 
 
 }
+.azul1, .lila1, .rojo1, .amarillo11{
+    cursor: pointer;
+}
+
 .azul{
     position:absolute;
     width:5%;    
@@ -179,9 +195,6 @@ video{
 
         }
 
-        .gruix1, .gruix2, .gruix3{
-            cursor: pointer;
-        }
 
         .gruix1{
             position:absolute;
@@ -251,11 +264,11 @@ video{
 
 }
 
-.uno, .dos, .tres{
-    cursor: pointer;
+.uno , .dos, .tres{
+ cursor: pointer;
 }
 
-.uno{
+.{
     margin-left:20px;
     font-size: 1.5vw;
     padding:30px;
@@ -275,15 +288,12 @@ video{
 }
 
 
-.azul1, .lila1, .rojo1, .amarillo{
-    cursor: pointer;
-}
-
 
 
 canvas{
     cursor: pointer;
 }
+
 
 
 

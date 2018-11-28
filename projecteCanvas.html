@@ -11,31 +11,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
-    
+
 </head>
 
 <body onload="draw1()">
-    <img src="pizarra3.jpg" class="pizarraa">
+    <img src="imatges/pizarra3.jpg" class="pizarraa">
 
     <!-- PEPA PIG FOTO -->
     <h3 class="pepatext">Si quieres aprender y poder<br>
-         jugar con las figuras selecciona<br>
-          la que quieras!</h3>
-    <img src="pepa.png" class="pepa">
+        jugar con las figuras selecciona<br>
+        la que quieras!</h3>
+    <img src="imatges/pepa.png" class="pepa">
 
     <!-- VIDEO -->
-    <button id="up" type="button">Up</button>
     <video id="video" controls>
-        <source src="pepapig.mp4" type="video/mp4">
+        <source src="video/video.mp4" type="video/mp4">
         Aquest navegador no és compatible amb HTML5
     </video>
+
+
 
 
     <!-- PASSAR PÀGINA -->
     <button id="passar" type="button" class="btn btn-primary btn-lg">Passa el video!</button> -->
 
+    <!-- CONTROL DE VOLUM -->
+    <button id="down" type="button" class="btn btn-primary btn-lg">Baixar el volum</button>
+    <button id="up" type="button" class="btn btn-primary btn-lg">Pujar el volum</button>
 
-    <img id="back" src="back.png" />
+
+    <img id="back" src="imatges/back.png" />
 
 
     <nav class="menu">
@@ -50,7 +55,8 @@
         </h2>
         <h3 class="normal">Color</h3><br>
         <h3 class="normal">Gruix</h3><br>
-        <h3 class="normal">Línia <img onclick="tipuslinea(0)" src="gruix.png" class="tipus1"><a onclick="tipuslinea(1)" class="guiones">.  .  .</a><a onclick="tipuslinea(2)" class="guiones2">- - -</a></h3><br><br>
+        <h3 class="normal">Línia <img onclick="tipuslinea(0)" src="imatges/gruix.png" class="tipus1"><a onclick="tipuslinea(1)"
+                class="guiones">. . .</a><a onclick="tipuslinea(2)" class="guiones2">- - -</a></h3><br><br>
         <h2 class="title">
             <span style="color:#5f0 ">T</span>
             <span style="color:#ff0">e</span>
@@ -59,63 +65,59 @@
 
         </h2><br>
         <h3 class="normal">Color</h3><br>
-        <h3 class="normal">Grandària <a class="uno" onclick="gruixLletra(0)"> Aa</a><a class="dos" onclick="gruixLletra(1)">Aa</a><a class="tres" onclick="gruixLletra(2)">Aa</a></h3><br>
+        <h3 class="normal">Grandària <a class="uno" onclick="gruixLletra(0)"> Aa</a><a class="dos" onclick="gruixLletra(1)">Aa</a><a
+                class="tres" onclick="gruixLletra(2)">Aa</a></h3><br>
 
 
 
     </nav>
     <nav class="lul">
-        <img onclick="colorpicker(0)" src="azul.png" class="azul">
-        <img onclick="colorpicker(2)"src="lila.png" class="lila">
-        <img onclick="colorpicker(3)"src="rojo.png" class="rojo">
-        <img onclick="colorpicker(1)"src="amarillo.png" class="amarillo">
+        <img onclick="colorpicker(0)" src="imatges/azul.png" class="azul">
+        <img onclick="colorpicker(2)" src="imatges/lila.png" class="lila">
+        <img onclick="colorpicker(3)" src="imatges/rojo.png" class="rojo">
+        <img onclick="colorpicker(1)" src="imatges/amarillo.png" class="amarillo">
 
     </nav>
 
     <nav class="gruix">
-        <img onclick="gruixo('1')" src="gruix.png" class="gruix1">
-        <img onclick="gruixo('2')" src="gruix.png" class="gruix2">
-        <img onclick="gruixo('3')" src="gruix.png" class="gruix3">
+        <img onclick="gruixo('1')" src="imatges/gruix.png" class="gruix1">
+        <img onclick="gruixo('2')" src="imatges/gruix.png" class="gruix2">
+        <img onclick="gruixo('3')" src="imatges/gruix.png" class="gruix3">
     </nav>
 
     <nav class="lul2">
-        <img src="azul.png" class="azul1" onclick="colorLletra(0)">
-        <img src="lila.png" class="lila1" onclick="colorLletra(2)">
-        <img src="rojo.png" class="rojo1"onclick="colorLletra(3)">
-        <img src="amarillo.png" class="amarillo1" onclick="colorLletra(1)">
+        <img src="imatges/azul.png" class="azul1" onclick="colorLletra(0)">
+        <img src="imatges/lila.png" class="lila1" onclick="colorLletra(2)">
+        <img src="imatges/rojo.png" class="rojo1" onclick="colorLletra(3)">
+        <img src="imatges/amarillo.png" class="amarillo1" onclick="colorLletra(1)">
 
     </nav>
 
-
-
-
-    
-
     <!-- <nav id="fila1"> -->
-        <canvas id="cuadrado" width="300" height="300" #d3d3d3;></canvas>
-        <canvas id="triangulo" width="300" height="300" #d3d3d3;></canvas>
-        <canvas id="pentagono" width="300" height="300" #d3d3d3;></canvas>
-        <canvas id="cilindro" width="300" height="300" #d3d3d3;></canvas>
+    <canvas id="cuadrado" width="300" height="300" #d3d3d3;></canvas>
+    <canvas id="triangulo" width="300" height="300" #d3d3d3;></canvas>
+    <canvas id="pentagono" width="300" height="300" #d3d3d3;></canvas>
+    <canvas id="cilindro" width="300" height="300" #d3d3d3;></canvas>
     <!-- </nav> -->
 
     <!-- <nav id="fila2"> -->
 
-        <canvas id="circulo" width="300" height="300" #d3d3d3;></canvas>
-        <canvas id="cRectangle" width="300" height="300"></canvas>
-        <a id="textRectangle"></a>
-        <canvas id="cArc" width="300" height="300"></canvas>
-        <a id="textArc"></a>
-        <canvas id="cElipse" width="300" height="300"></canvas>
-        <a id="textElipse"></a>
+    <canvas id="circulo" width="300" height="300" #d3d3d3;></canvas>
+    <canvas id="cRectangle" width="300" height="300"></canvas>
+    <a id="textRectangle"></a>
+    <canvas id="cArc" width="300" height="300"></canvas>
+    <a id="textArc"></a>
+    <canvas id="cElipse" width="300" height="300"></canvas>
+    <a id="textElipse"></a>
     <!-- </nav> -->
-   <!--  <nav id="fila3"> -->
+    <!--  <nav id="fila3"> -->
 
-        <canvas id="cPiramide3D" width="300" height="300"></canvas>
-        <a id="textPiramide3D"></a>
-        <canvas id="cCub" width="300" height="300"></canvas>
-        <a id="textCub"></a>
+    <canvas id="cPiramide3D" width="300" height="300"></canvas>
+    <a id="textPiramide3D"></a>
+    <canvas id="cCub" width="300" height="300"></canvas>
+    <a id="textCub"></a>
     <!-- </nav> -->
-
+  
 </body>
 
 </html>
